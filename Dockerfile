@@ -16,3 +16,7 @@ RUN python3.6 get-pip.py
 RUN python3.6 -m pip install -U pip-run
 RUN python2.7 get-pip.py
 RUN python2.7 -m pip install -U pip-run
+
+# Set the character set to support UTF-8
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
