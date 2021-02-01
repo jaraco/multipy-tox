@@ -31,3 +31,6 @@ RUN python -m pip install -U pip tox tox-pip-version pip-run
 # Set the character set to support UTF-8
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
+
+# Disable PIP version warnings; it'll never get better.
+ENV PIP_NO_PYTHON_VERSION_WARNING=1
