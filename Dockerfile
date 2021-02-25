@@ -14,7 +14,9 @@ RUN apt install -y python3.6 python3.6-dev python3.6-venv
 RUN apt install -y python3-distutils
 RUN apt install -y python3.7 python3.7-dev python3.7-venv
 RUN apt install -y python3.8 python3.8-dev python3.8-venv
+RUN apt install -y pypy3
 RUN apt install -y python3.9 python3.9-dev python3.9-venv python3.9-distutils
+RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s $(which python3.9) /usr/local/bin/python
 RUN ln -s $(which python3.9) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/2.7/get-pip.py
@@ -29,6 +31,8 @@ RUN python3.7 -m ensurepip
 RUN python3.7 -m pip install -U pip pip-run
 RUN python3.8 get-pip.py
 RUN python3.8 -m pip install -U pip pip-run
+RUN pypy get-pip.py
+RUN pypy -m pip install -U pip-run
 RUN python3.9 get-pip.py
 RUN python -m pip install -U pip tox tox-pip-version pip-run
 
