@@ -3,6 +3,9 @@ FROM ubuntu:focal
 # Disable PIP version warnings; it'll never get better.
 ENV PIP_NO_PYTHON_VERSION_WARNING=1
 
+# Prefer PEP517 for builds
+ENV PIP_USE_PEP517=1
+
 RUN apt update
 RUN apt upgrade -y
 RUN apt install -y software-properties-common
@@ -34,7 +37,7 @@ RUN python3.8 -m pip install -U pip pip-run
 RUN pypy get-pip.py --no-setuptools
 RUN pypy -m pip install -U pip-run
 RUN python3.9 get-pip.py --no-setuptools
-RUN python -m pip install --use-pep517 -U pip tox tox-pip-version pip-run
+RUN python -m pip install -U pip tox tox-pip-version pip-run
 
 # Set the character set to support UTF-8
 ENV LANG C.UTF-8
