@@ -21,8 +21,8 @@ RUN apt install -y pypy3
 RUN apt install -y python3.9 python3.9-dev python3.9-venv python3.9-distutils
 RUN apt install -y python3.10 python3.10-dev python3.10-venv
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
-RUN ln -s $(which python3.9) /usr/local/bin/python
-RUN ln -s $(which python3.9) /usr/local/bin/python3
+RUN ln -s $(which python3.10) /usr/local/bin/python
+RUN ln -s $(which python3.10) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py
 RUN python2.7 get-pip.py --no-setuptools
 RUN python2.7 -m pip install -U pip-run
