@@ -6,6 +6,9 @@ ENV PIP_NO_PYTHON_VERSION_WARNING=1
 # Prefer PEP517 for builds
 ENV PIP_USE_PEP517=1
 
+# Disable installing Setuptools by default
+ENV PIP_NO_SETUPTOOLS=1
+
 RUN apt update
 RUN apt upgrade -y
 RUN apt install -y software-properties-common
@@ -24,21 +27,21 @@ RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s $(which python3.10) /usr/local/bin/python
 RUN ln -s $(which python3.10) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py
-RUN python2.7 get-pip.py --no-setuptools
+RUN python2.7 get-pip.py
 RUN python2.7 -m pip install -U pip-run
-RUN python3.5 get-pip.py --no-setuptools
+RUN python3.5 get-pip.py
 RUN python3.5 -m pip install -U pip-run
 RUN wget -q https://bootstrap.pypa.io/get-pip.py
-RUN python3.6 get-pip.py --no-setuptools
+RUN python3.6 get-pip.py
 RUN python3.6 -m pip install -U pip-run
 RUN python3.7 -m ensurepip
 RUN python3.7 -m pip install -U pip pip-run
-RUN python3.8 get-pip.py --no-setuptools
+RUN python3.8 get-pip.py
 RUN python3.8 -m pip install -U pip pip-run
-RUN pypy get-pip.py --no-setuptools
+RUN pypy get-pip.py
 RUN pypy -m pip install -U pip-run
-RUN python3.9 get-pip.py --no-setuptools
-RUN python3.10 get-pip.py --no-setuptools
+RUN python3.9 get-pip.py
+RUN python3.10 get-pip.py
 RUN python -m pip install -U pip tox tox-pip-version pip-run
 
 # Set the character set to support UTF-8
