@@ -44,6 +44,9 @@ RUN python3.9 get-pip.py
 RUN python3.10 get-pip.py
 RUN python -m pip install -U pip tox tox-pip-version pip-run
 
+# Install Python launcher
+RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-x86_64-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
+
 # Set the character set to support UTF-8
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
