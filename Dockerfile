@@ -65,3 +65,5 @@ RUN pipx install tox
 # Set the character set to support UTF-8
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
+
+ENTRYPOINT xonsh
