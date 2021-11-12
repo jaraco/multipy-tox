@@ -49,7 +49,10 @@ RUN pypy -m pip install -U pip-run
 RUN py -3.9 /tmp/get-pip
 RUN py -3.9 -m pip install -U pip pip-run
 RUN py -3.10 /tmp/get-pip
-RUN py -3.10 -m pip install -U pip pip-run pipx
+
+# Python 3.10 is broken (pypa/pip#10647)
+# RUN py -3.10 -m pip install -U pip pip-run pipx
+RUN py -3.9 -m pip install pipx
 
 # Make pipx installs executable
 ENV PATH /root/.local/bin:$PATH
