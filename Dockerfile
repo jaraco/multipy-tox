@@ -66,4 +66,4 @@ RUN pipx install tox
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-ENTRYPOINT xonsh
+CMD ["/root/.local/bin/xonsh"]
