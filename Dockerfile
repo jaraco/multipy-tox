@@ -28,7 +28,7 @@ RUN apt install -y python3.10 python3.10-dev python3.10-venv
 RUN apt install -y python3.11 python3.11-dev python3.11-venv
 
 # Install Python launcher
-RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-x86_64-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
+RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
 
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s $(which python3.10) /usr/local/bin/python
