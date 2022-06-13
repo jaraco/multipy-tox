@@ -25,6 +25,7 @@ RUN apt install -y python3.8 python3.8-dev python3.8-venv
 RUN apt install -y pypy3
 RUN apt install -y python3.9 python3.9-dev python3.9-venv python3.9-distutils
 RUN apt install -y python3.10 python3.10-dev python3.10-venv
+RUN apt install -y python3.11 python3.11-dev python3.11-venv
 
 # Install Python launcher
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-x86_64-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
@@ -52,6 +53,8 @@ RUN py -3.9 -m pip install -U pip pip-run
 # install --user as workaround for pypa/pip#10647
 RUN py -3.10 /tmp/get-pip --user
 RUN py -3.10 -m pip install --user pip-run pipx
+RUN py -3.11 /tmp/get-pip
+RUN py -3.11 -m pip install --user pip-run pipx
 
 # Make pipx installs executable
 ENV PATH /root/.local/bin:$PATH
