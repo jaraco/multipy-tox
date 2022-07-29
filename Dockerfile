@@ -50,11 +50,10 @@ RUN py -3.8 /tmp/get-pip
 RUN py -3.8 -m pip install -U pip pip-run
 RUN py -3.9 /tmp/get-pip
 RUN py -3.9 -m pip install -U pip pip-run
-# install --user as workaround for pypa/pip#10647
-RUN py -3.10 /tmp/get-pip --user
-RUN py -3.10 -m pip install --user pip-run pipx
+RUN py -3.10 /tmp/get-pip
+RUN py -3.10 -m pip install -U pip pip-run pipx
 RUN py -3.11 /tmp/get-pip
-RUN py -3.11 -m pip install --user pip-run pipx
+RUN py -3.11 -m pip install -U pip pip-run
 
 # Make pipx installs executable
 ENV PATH /root/.local/bin:$PATH
