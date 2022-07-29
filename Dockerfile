@@ -51,9 +51,11 @@ RUN py -3.8 -m pip install -U pip pip-run
 RUN py -3.9 /tmp/get-pip
 RUN py -3.9 -m pip install -U pip pip-run
 RUN py -3.10 /tmp/get-pip
-RUN py -3.10 -m pip install -U pip pip-run pipx
+RUN py -3.10 -m pip install -U pip pip-run
 RUN py -3.11 /tmp/get-pip
 RUN py -3.11 -m pip install -U pip pip-run
+
+RUN py -m pip install pipx
 
 # Make pipx installs executable
 ENV PATH /root/.local/bin:$PATH
