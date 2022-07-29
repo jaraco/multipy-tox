@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 # Disable PIP version warnings; it'll never get better.
 ENV PIP_NO_PYTHON_VERSION_WARNING=1
@@ -16,16 +16,20 @@ RUN apt-add-repository -y ppa:deadsnakes
 RUN apt update
 RUN apt install -y build-essential wget git
 
+# Disable interactive on the installs below
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install Pythons
-RUN apt install -y python3.5-dev python3.5-venv python2.7
-RUN apt install -y python3.6 python3.6-dev python3.6-venv
-RUN apt install -y python3-distutils
+RUN apt install -y python2.7
 RUN apt install -y python3.7 python3.7-dev python3.7-venv
 RUN apt install -y python3.8 python3.8-dev python3.8-venv
 RUN apt install -y pypy3
 RUN apt install -y python3.9 python3.9-dev python3.9-venv python3.9-distutils
 RUN apt install -y python3.10 python3.10-dev python3.10-venv
 RUN apt install -y python3.11 python3.11-dev python3.11-venv
+
+# Clear the env, restoring default behavior
+ENV DEBIAN_FRONTEND=
 
 # Install Python launcher
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
@@ -36,11 +40,6 @@ RUN ln -s $(which python3.10) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip
 RUN py -2 /tmp/get-pip
 RUN py -2 -m pip install -U pip-run
-RUN py -3.5 /tmp/get-pip
-RUN py -3.5 -m pip install -U pip-run
-RUN wget -q https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip
-RUN py -3.6 /tmp/get-pip
-RUN py -3.6 -m pip install -U pip-run
 RUN pypy /tmp/get-pip
 RUN pypy -m pip install -U pip-run
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
