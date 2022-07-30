@@ -32,8 +32,8 @@ ENV DEBIAN_FRONTEND=
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
 
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
-RUN ln -s $(which python3.10) /usr/local/bin/python
-RUN ln -s $(which python3.10) /usr/local/bin/python3
+RUN ln -s $(which python3.11) /usr/local/bin/python
+RUN ln -s $(which python3.11) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip
 RUN py -2 /tmp/get-pip
 RUN py -2 -m pip install -U pip-run
