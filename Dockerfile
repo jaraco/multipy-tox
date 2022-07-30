@@ -38,12 +38,12 @@ RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip
 RUN py -2 /tmp/get-pip
 RUN py -2 -m pip install -U pip-run
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
-RUN pypy /tmp/get-pip
-RUN pypy -m pip install -U pip-run
 RUN py -3.7 /tmp/get-pip
 RUN py -3.7 -m pip install -U pip pip-run
 RUN py -3.8 /tmp/get-pip
 RUN py -3.8 -m pip install -U pip pip-run
+RUN pypy /tmp/get-pip
+RUN pypy -m pip install -U pip-run
 RUN py -3.9 /tmp/get-pip
 RUN py -3.9 -m pip install -U pip pip-run
 RUN py -3.10 /tmp/get-pip
