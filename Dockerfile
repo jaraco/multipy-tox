@@ -3,9 +3,6 @@ FROM ubuntu:jammy
 # Disable PIP version warnings; it'll never get better.
 ENV PIP_NO_PYTHON_VERSION_WARNING=1
 
-# Prefer PEP517 for builds
-ENV PIP_USE_PEP517=1
-
 # Disable installing Setuptools by default
 ENV PIP_NO_SETUPTOOLS=1
 
