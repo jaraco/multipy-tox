@@ -40,7 +40,7 @@ RUN py -2 -m pip install -U pip-run
 RUN pypy /tmp/get-pip
 RUN pypy -m pip install -U pip-run
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
-RUN py -3.7 -m ensurepip
+RUN py -3.7 /tmp/get-pip
 RUN py -3.7 -m pip install -U pip pip-run
 RUN py -3.8 /tmp/get-pip
 RUN py -3.8 -m pip install -U pip pip-run
