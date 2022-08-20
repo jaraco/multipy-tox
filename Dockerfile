@@ -3,6 +3,9 @@ FROM ubuntu:jammy
 # Disable PIP version warnings; it'll never get better.
 ENV PIP_NO_PYTHON_VERSION_WARNING=1
 
+# Disable "root user" warning
+ENV PIP_ROOT_USER_ACTION=ignore
+
 # Disable installing Setuptools by default
 ENV PIP_NO_SETUPTOOLS=1
 
