@@ -27,12 +27,15 @@ RUN apt install -y pypy3
 RUN apt install -y python3.9 python3.9-dev python3.9-venv python3.9-distutils
 RUN apt install -y python3.10 python3.10-dev python3.10-venv
 RUN apt install -y python3.11 python3.11-dev python3.11-venv
+RUN apt install -y python3.12 python3.12-dev python3.12-venv
 
 # Clear the env, restoring default behavior
 ENV DEBIAN_FRONTEND=
 
 # Install Python launcher
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
+# Default Python
+ENV PY_PYTHON=3.11
 
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s $(which python3.11) /usr/local/bin/python
@@ -53,6 +56,8 @@ RUN py -3.10 /tmp/get-pip
 RUN py -3.10 -m pip install -U pip pip-run
 RUN py -3.11 /tmp/get-pip
 RUN py -3.11 -m pip install -U pip pip-run
+RUN py -3.12 /tmp/get-pip
+RUN py -3.12 -m pip install -U pip pip-run
 
 RUN py -m pip install pipx
 
