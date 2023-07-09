@@ -70,6 +70,8 @@ RUN touch ~/.xonshrc
 
 # Install tox
 RUN pipx install tox
+# Retain support for Python 2 environments
+RUN pipx inject tox 'virtualenv<20.22'
 
 # Set the character set to support UTF-8
 ENV LANG C.UTF-8
