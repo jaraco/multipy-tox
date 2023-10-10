@@ -35,7 +35,7 @@ ENV DEBIAN_FRONTEND=
 # Install Python launcher
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
 # Default Python
-ENV PY_PYTHON=3.11
+ENV PY_PYTHON=3.12
 
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s $(which python3.11) /usr/local/bin/python
