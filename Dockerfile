@@ -66,7 +66,7 @@ ENV PATH /root/.local/bin:$PATH
 
 # Use xonsh as the shell
 RUN pipx install xonsh[full]
-RUN touch ~/.xonshrc
+RUN pipx inject xonsh jaraco.xonsh
 
 # Install tox
 RUN pipx install tox
