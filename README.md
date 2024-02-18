@@ -3,4 +3,11 @@ Docker image providing multipe Python versions (multipy) with tox as
 
 Now with support for ARM.
 
-After [configuring buildx support](https://cloudolife.com/2022/03/05/Infrastructure-as-Code-IaC/Container/Docker/Docker-buildx-support-multiple-architectures-images/), build with `docker buildx build --platform linux/amd64,linux/arm64 -t jaraco/multipy-tox --push .`.
+After [configuring buildx support](https://docs.docker.com/build/building/multi-platform/):
+
+```
+docker buildx create --name multi
+docker buildx use multi
+```
+
+Build with `docker buildx build --platform linux/amd64,linux/arm64 -t jaraco/multipy-tox --push .`.
