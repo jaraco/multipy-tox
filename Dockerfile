@@ -29,6 +29,10 @@ RUN apt install -y python3.10 python3.10-dev python3.10-venv
 RUN apt install -y python3.11 python3.11-dev python3.11-venv
 RUN apt install -y python3.12 python3.12-dev python3.12-venv
 
+# Install Rust (required for dependencies of pip-run)
+RUN wget https://sh.rustup.rs -O - | sh -s -- -y
+ENV PATH /root/.cargo/bin:$PATH
+
 # Clear the env, restoring default behavior
 ENV DEBIAN_FRONTEND=
 
