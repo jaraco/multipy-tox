@@ -42,8 +42,8 @@ RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0
 ENV PY_PYTHON=3.12
 
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
-RUN ln -s $(which python3.11) /usr/local/bin/python
-RUN ln -s $(which python3.11) /usr/local/bin/python3
+RUN ln -s python3 /usr/local/bin/python
+RUN ln -s $(which python${PY_PYTHON}) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip
 RUN py -2 /tmp/get-pip
 RUN py -2 -m pip install -U pip-run
