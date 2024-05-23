@@ -19,6 +19,9 @@ RUN apt install -y build-essential wget git
 # Disable interactive on the installs below
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Set TZ to avoid spurious errors from Sphinx (nektos/act#1853)
+ENV TZ=UTC
+
 # Install Pythons
 RUN apt install -y python3.7 python3.7-dev python3.7-venv
 RUN apt install -y python3.8 python3.8-dev python3.8-venv
