@@ -50,26 +50,23 @@ RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s python3 /usr/local/bin/python
 RUN ln -s $(which python${PY_PYTHON}) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/3.7/get-pip.py -O - | py -3.7
-RUN py -3.7 -m pip install pip-run
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
 RUN py -3.8 /tmp/get-pip
-RUN py -3.8 -m pip install pip-run
 RUN pypy /tmp/get-pip
-RUN pypy -m pip install pip-run
 RUN py -3.9 /tmp/get-pip
-RUN py -3.9 -m pip install pip-run
 RUN py -3.10 /tmp/get-pip
-RUN py -3.10 -m pip install pip-run
 RUN py -3.11 /tmp/get-pip
-RUN py -3.11 -m pip install pip-run
 RUN py -3.12 /tmp/get-pip
-RUN py -3.12 -m pip install pip-run
 RUN py -3.13 /tmp/get-pip
-RUN py -3.13 -m pip install pip-run
 
+# Install pip-run
+RUN py -3.7 -m pip install --target ~/.local/pip-run pip-run
+ENV PATH=/root/.local/pip-run/bin:$PATH
+ENV PYTHONPATH=/root/.local/pip-run
+RUN sed -i -e 's/#!.*/#!py/' /root/.local/pip-run/bin/pip-run
+
+# Install pipx
 RUN py -m pip install pipx
-
-# Make pipx installs executable
 ENV PATH /root/.local/bin:$PATH
 
 # Use xonsh as the shell
