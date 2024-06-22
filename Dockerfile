@@ -64,8 +64,8 @@ RUN py -3.11 /tmp/get-pip
 RUN py -3.11 -m pip install pip-run
 RUN py -3.12 /tmp/get-pip
 RUN py -3.12 -m pip install pip-run
-# RUN py -3.13 /tmp/get-pip
-# RUN py -3.13 -m pip install pip-run
+RUN py -3.13 /tmp/get-pip
+RUN py -3.13 -m pip install pip-run
 
 RUN py -m pip install pipx
 
