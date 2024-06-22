@@ -71,7 +71,8 @@ ENV PATH /root/.local/bin:$PATH
 
 # Use xonsh as the shell
 RUN pipx install xonsh[full]
-RUN pipx inject xonsh jaraco.xonsh
+# --pip-args below workaround for CFFI on Python 3.13
+RUN pipx inject --pip-args=--pre xonsh jaraco.xonsh
 
 # Install tox
 RUN pipx install tox[virtualenv]
