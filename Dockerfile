@@ -49,9 +49,9 @@ ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s python3 /usr/local/bin/python
 RUN ln -s $(which python${PY_PYTHON}) /usr/local/bin/python3
-RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
-RUN py -3.7 /tmp/get-pip
+RUN wget -q https://bootstrap.pypa.io/pip/3.7/get-pip.py -O - | py -3.7
 RUN py -3.7 -m pip install pip-run
+RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
 RUN py -3.8 /tmp/get-pip
 RUN py -3.8 -m pip install pip-run
 RUN pypy /tmp/get-pip
