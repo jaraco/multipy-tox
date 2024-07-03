@@ -64,7 +64,7 @@ RUN py -3.13 /tmp/get-pip
 RUN py -3.7 -m pip install --target ~/.local/pip-run pip-run
 ENV PATH=/root/.local/pip-run/bin:$PATH
 ENV PYTHONPATH=/root/.local/pip-run
-RUN sed -i -e 's/#!.*/#!py/' /root/.local/pip-run/bin/pip-run
+RUN sed -i -e 's/#!.*/#!py/' /root/.local/pip-run/bin/pip*
 
 # Install pipx
 RUN py -m pip install pipx
