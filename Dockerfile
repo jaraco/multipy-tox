@@ -32,6 +32,8 @@ RUN apt install -y python3.11 python3.11-dev python3.11-venv
 RUN apt install -y python3.12 python3.12-dev python3.12-venv
 RUN apt install -y python3.13 python3.13-dev python3.13-venv
 RUN apt install -y python3.13-nogil
+RUN apt install -y python3.14 python3.14-dev python3.14-venv
+RUN apt install -y python3.14-nogil
 
 # Install Rust (required for dependencies of pip-run)
 RUN wget https://sh.rustup.rs -O - | sh -s -- -y
@@ -60,6 +62,7 @@ RUN py -3.10 /tmp/get-pip
 RUN py -3.11 /tmp/get-pip
 RUN py -3.12 /tmp/get-pip
 RUN py -3.13 /tmp/get-pip
+RUN py -3.14 /tmp/get-pip
 
 # Install pip-run
 RUN py -3.7 -m pip install --target ~/.local/pip-run pip-run
