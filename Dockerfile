@@ -54,8 +54,8 @@ RUN ln -s $(which pypy3) /usr/local/bin/pypy
 RUN ln -s python3 /usr/local/bin/python
 RUN ln -s $(which python${PY_PYTHON}) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/3.7/get-pip.py -O - | py -3.7
+RUN wget -q https://bootstrap.pypa.io/pip/3.8/get-pip.py -O - | py -3.8
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
-RUN py -3.8 /tmp/get-pip
 RUN pypy /tmp/get-pip
 RUN py -3.9 /tmp/get-pip
 RUN py -3.10 /tmp/get-pip
