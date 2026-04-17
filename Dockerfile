@@ -34,6 +34,8 @@ RUN apt install -y python3.13 python3.13-dev python3.13-venv
 RUN apt install -y python3.13-nogil
 RUN apt install -y python3.14 python3.14-dev python3.14-venv
 RUN apt install -y python3.14-nogil
+RUN apt install -y python3.15 python3.15-dev python3.15-venv
+RUN apt install -y python3.15-nogil
 
 # Install Rust (required for dependencies of pip-run)
 RUN wget https://sh.rustup.rs -O - | sh -s -- -y
@@ -45,7 +47,7 @@ ENV DEBIAN_FRONTEND=
 # Install Python launcher
 RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
 # Default Python
-ENV PY_PYTHON=3.13
+ENV PY_PYTHON=3.14
 # Workaround for pip disallowing system packages
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
@@ -63,6 +65,7 @@ RUN py -3.11 /tmp/get-pip
 RUN py -3.12 /tmp/get-pip
 RUN py -3.13 /tmp/get-pip
 RUN py -3.14 /tmp/get-pip
+RUN py -3.15 /tmp/get-pip
 
 # Install pip-run
 RUN py -3.7 -m pip install --target ~/.local/pip-run pip-run
