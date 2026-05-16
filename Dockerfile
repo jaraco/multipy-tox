@@ -9,6 +9,9 @@ ENV PIP_ROOT_USER_ACTION=ignore
 # Disable installing Setuptools by default
 ENV PIP_NO_SETUPTOOLS=1
 
+# Disable PIP's own upgrade warnings.
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
 RUN apt update
 RUN apt upgrade -y
 RUN apt install -y software-properties-common
