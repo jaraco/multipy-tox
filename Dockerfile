@@ -1,4 +1,4 @@
-FROM ubuntu:noble
+FROM ubuntu:resolute
 
 # Disable PIP version warnings; it'll never get better.
 ENV PIP_NO_PYTHON_VERSION_WARNING=1
@@ -36,19 +36,26 @@ RUN apt install -y python3.12 python3.12-dev python3.12-venv
 RUN apt install -y python3.13 python3.13-dev python3.13-venv
 RUN apt install -y python3.13-nogil
 RUN apt install -y python3.14 python3.14-dev python3.14-venv
-RUN apt install -y python3.14-nogil
 RUN apt install -y python3.15 python3.15-dev python3.15-venv
 RUN apt install -y python3.15-nogil
 
 # Install Rust (required for dependencies of pip-run)
 RUN wget https://sh.rustup.rs -O - | sh -s -- -y
-ENV PATH /root/.cargo/bin:$PATH
+ENV PATH=/root/.cargo/bin:$PATH
+
+# Install UV
+RUN cargo install uv
+
+# Install more Pythons not available elsewhere
+#ENV UV_PYTHON_INSTALL_DIR=/usr
+ENV UV_PYTHON_BIN_DIR=/usr/bin
+RUN uv python install 3.14t
 
 # Clear the env, restoring default behavior
 ENV DEBIAN_FRONTEND=
 
 # Install Python launcher
-RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -p)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
+RUN wget https://github.com/brettcannon/python-launcher/releases/download/v1.0.0/python_launcher-1.0.0-$(uname -m)-unknown-linux-gnu.tar.xz -O - | tar xJ --directory /usr/local --strip-components 1
 # Default Python
 ENV PY_PYTHON=3.14
 # Workaround for pip disallowing system packages
@@ -60,15 +67,18 @@ RUN ln -s python3 /usr/local/bin/python
 RUN ln -s $(which python${PY_PYTHON}) /usr/local/bin/python3
 RUN wget -q https://bootstrap.pypa.io/pip/3.7/get-pip.py -O - | py -3.7
 RUN wget -q https://bootstrap.pypa.io/pip/3.8/get-pip.py -O - | py -3.8
-RUN wget -q https://bootstrap.pypa.io/pip/3.9/get-pip.py -O - | pypy
 RUN wget -q https://bootstrap.pypa.io/pip/3.9/get-pip.py -O - | py -3.9
 RUN wget -q https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip
+RUN pypy /tmp/get-pip
 RUN py -3.10 /tmp/get-pip
 RUN py -3.11 /tmp/get-pip
 RUN py -3.12 /tmp/get-pip
 RUN py -3.13 /tmp/get-pip
+RUN python3.13t /tmp/get-pip
 RUN py -3.14 /tmp/get-pip
+RUN python3.14t /tmp/get-pip
 RUN py -3.15 /tmp/get-pip
+RUN python3.15t /tmp/get-pip
 
 # Install pip-run
 RUN py -3.7 -m pip install --target ~/.local/pip-run pip-run
@@ -78,7 +88,7 @@ RUN sed -i -e 's/#!.*/#!py/' /root/.local/pip-run/bin/pip*
 
 # Install pipx
 RUN py -m pip install pipx
-ENV PATH /root/.local/bin:$PATH
+ENV PATH=/root/.local/bin:$PATH
 
 # Use xonsh as the shell
 RUN pipx install xonsh[full]
@@ -89,7 +99,7 @@ RUN pipx inject --pip-args=--pre xonsh jaraco.xonsh
 RUN pipx install tox[virtualenv]
 
 # Set the character set to support UTF-8
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 CMD ["/root/.local/bin/xonsh"]
